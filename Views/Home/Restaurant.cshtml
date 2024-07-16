@@ -1,0 +1,163 @@
+﻿@model Simple.Models.Restaurant
+
+@{
+    ViewBag.Title = "Nhà hàng " + Model.RtrRealName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Model.CloseTime == TimeSpan.Zero)
+    {
+        Model.CloseTime = new TimeSpan(23, 59, 0);
+    }
+}
+
+<div class="section py-3 px-sm-2 px-md-4 ">
+    <div class="row mb-2 mb-md-4">
+        <div class="col-lg-1">
+        </div>
+        <div class=" col-md-4 col-lg-3 px-3 px-sm-5 px-md-2">
+            <img class="rounded-3 avatar-img "
+                 @{if (Model.RtrAvatar == null) { <text> src="@Url.Content("~/Content/Images/placeholder.jpg")" </text>  } else { <text> src=@Model.RtrAvatar</text>
+                }
+                        } alt="Avatar" />
+            <br /><br>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <h2>Nhà hàng @Model.RtrRealName</h2>
+            <div class="text-secondary city">@Model.RtrAddress, @Model.RtrCity </div>
+            <div class="r-display"> 
+                Giờ mở cửa: @Model.OpenTime.ToString("hh':'mm''") - @Model.CloseTime.ToString("hh':'mm''")
+            </div>
+            <div class="r-display text-danger fw-bold">
+                @{ if (Model.MinPrice == null && Model.MaxPrice == null)
+                    {
+                        
+                    }
+                    else if (Model.MinPrice == null)
+                    {
+                        <text>Không quá @Model.MaxPrice đ</text>
+
+                    }
+                    else if (Model.MaxPrice == null)
+                    {
+                        <text>Chỉ từ @Model.MinPrice đ</text>
+                    }
+                    else
+                    {
+                        <text>Từ @Model.MinPrice đ đến @Model.MaxPrice đ </text>
+                    }
+                }
+            </div>
+            <div class="text-black">
+                <br />
+                Email: @Model.RtrEmail <br />
+                Số điện thoại: @Model.RtrPhone
+            </div>
+            <div class="mt-2 mt-md-3">
+                @{ if (Model.Active == false)
+                    {
+                        @Html.ActionLink("Đặt chỗ", "Create", "Booking", new { id = Model.RtrID }, new { @class = "btn btn-danger px-4" })
+                    } else
+            {
+                <h4>Nhà hàng đang tạm dừng nhận đơn</h4>
+            }
+                        }
+
+
+            </div>
+        </div>
+    </div>
+    
+
+    <hr />
+    
+    <div class="desc my-2">
+        <h3>Giới thiệu về nhà hàng</h3>
+        <div class="mx-4">@Html.Raw(@Model.RtrDesc)</div>
+    </div>
+    <br />
+    <div class="library my-2">
+        <h3>Hình ảnh nhà hàng</h3>
+        <br />
+        <div class="px-4  ">
+            @if (((List<Simple.Models.Image>)ViewData["Images"]).Count > 2)
+            {
+                <div class="splide item-3" aria-label="Basic Structure Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            @foreach (var image in (List<Simple.Models.Image>)ViewData["Images"])
+                            {
+                                <li class="splide__slide">
+                                    <img class="rounded-4" src=@image.ImageUrl alt="carousel-image" />
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            @if (((List<Simple.Models.Image>)ViewData["Images"]).Count == 2)
+            {
+                <div class="splide item-2" aria-label="Basic Structure Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            @foreach (var image in (List<Simple.Models.Image>)ViewData["Images"])
+                            {
+                                <li class="splide__slide">
+                                    <img class="rounded-4" src=@image.ImageUrl alt="carousel-image" />
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            @if (((List<Simple.Models.Image>)ViewData["Images"]).Count < 2)
+            {
+        <div class="item-1 text-center">
+            @foreach (var image in (List<Simple.Models.Image>)ViewData["Images"])
+            {
+                
+                    <img class="rounded-4" src=@image.ImageUrl alt="carousel-image" />
+                
+
+            }
+        </div>
+            }
+
+            </div>
+    </div><br />
+          <div class="comment my-2">
+              @{ if (ViewBag.Rate == null)
+                  {
+                            <h3>Đánh giá - <span class="fs-5"> 0</span><span class="text-warning fs-4">★</span> <span style="font-size:16px; font-weight:normal"> (0 lượt)</span> </h3>
+                  }
+                  else
+                  {
+                      <h3>Đánh giá - <span class="fs-5"> @ViewBag.Stars</span><span class="text-warning fs-4">★</span> <span style="font-size:16px; font-weight:normal"> (@ViewBag.Rate.Count lượt)</span> </h3>
+                      foreach (var item in ViewBag.Rate)
+                      {
+                          <div class="card my-3">
+                              <div class="card-header bg-body-secondary">
+                                  <div class="d-block d-md-inline" style="font-size:20px; font-weight:bold">
+                                      @item.Customer.CustomerRealName
+                                  </div> 
+                                  <div class="d-block d-md-inline">
+                                      đã đánh giá ngày @item.ArrivalDate.ToString("d/M/yyyy")
+                                  </div>
+                                  
+                              </div>
+                              <div class="card-body px-4">
+                                  @for (int i = 0; i < item.Rate; i++)
+                                  {<span class="text-warning fs-4">★</span>}
+                                  <br />
+                                  @item.Comment
+                              </div>
+
+                          </div>
+                      }
+                  } }
+
+          </div>
+    
+    
+
+</div>

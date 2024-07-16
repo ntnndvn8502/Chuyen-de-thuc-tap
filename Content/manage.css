@@ -1,0 +1,108 @@
+﻿body {
+  background: var(--Backgroud-Light, #F2F2F7); }
+
+nav {
+  background: #F01B23 !important; }
+  nav .nav-account {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem; }
+    nav .nav-account .nav-link {
+      color: white !important; }
+    nav .nav-account .nav-link:hover {
+      background: unset !important; }
+
+.sidebar {
+  background: white; }
+  .sidebar .sidebar-item {
+    border-bottom: 1px solid var(--FillS-Colors-Light-Primary, rgba(120, 120, 128, 0.2));
+    justify-content: space-between;
+    display: flex;
+    align-items: center; }
+    .sidebar .sidebar-item .NoOrder {
+      font-size: 13px;
+      height: 23px;
+      width: 23px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0; }
+  .sidebar .sidebar-item:hover {
+    background: var(--LabelS-Colors-Light-Quarternary, rgba(60, 60, 67, 0.18)); }
+
+.main {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 80px);
+  background: white; }
+
+#statusSearch, #happenSearch {
+  width: 258px; }
+
+#startDate, #endDate {
+  width: 200px; }
+
+.tbody {
+  vertical-align: middle; }
+
+.ck-content {
+  min-height: 100px !important; }
+
+.library-image {
+  width: 100%;
+  height: 350px;
+  object-fit: contain; }
+
+.delete-image {
+  color: white;
+  text-decoration: none;
+  background-color: rgba(19, 19, 19, 0.7);
+  padding: 5px 10px; }
+
+.delete-image:hover {
+  background-color: rgba(19, 19, 19, 0.9);
+  transition: 200ms ease;
+  text-decoration: underline; }
+
+.box {
+  height: 320px;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 1px 2px 3px 3px rgba(12, 12, 12, 0.2);
+  padding: 32px;
+  text-align: center;
+  padding-top: 80px;
+  cursor: pointer; }
+
+.box.rtr {
+  height: 250px;
+  padding-top: 40px; }
+
+.box_ls {
+  border-radius: 8px;
+  box-shadow: 1px 2px 3px 3px rgba(12, 12, 12, 0.2);
+  padding-inline: 32px;
+  text-align: center;
+  padding-block: 16px;
+  margin-inline: auto;
+  width: 500px;
+  margin-bottom: 16px; }
+
+.NoOrder_large {
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto; }
+
+.form-check-input:checked {
+  background-color: #198754 !important;
+  border-color: #198754 !important; }

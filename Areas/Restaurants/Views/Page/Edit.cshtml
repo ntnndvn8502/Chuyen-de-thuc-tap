@@ -1,0 +1,149 @@
+﻿@model Simple.Models.Restaurant
+
+@{
+    ViewBag.Title = "Chỉnh sửa trang giới thiệu";
+    Layout = "~/Areas/Restaurants/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.inactive == true)
+{
+    <div class="box_ls">
+        <span>Nhà hàng đang tạm ngừng nhận đơn</span>
+        @Html.ActionLink("Nhận đơn trở lại", "Inactive", "Home", new { id = false }, new { @class = "btn btn-danger ms-3" })
+    </div>
+}
+<div class="d-flex justify-content-between align-items-center">
+
+    <h2>Chỉnh sửa trang giới thiệu nhà hàng</h2>
+    @Html.ActionLink("Thư viện ảnh", "Index", "Images", new { }, new { @class = "btn btn-warning" })
+</div>
+<div>
+    <a target="_blank" href="/Home/Restaurant/@Model.RtrID">Xem trang giới thiệu nhà hàng</a>
+</div>
+
+
+@using (Html.BeginForm("Edit", "Page", FormMethod.Post, new { id = "PageEdit" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RtrID)
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Tên nhà hàng</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.RtrRealName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RtrRealName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Email</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.RtrEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RtrEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">SĐT</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.RtrPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RtrPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Tỉnh/Thành phố</div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.RtrCity, (IEnumerable<SelectListItem>)ViewBag.CityList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Địa chỉ</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.RtrAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RtrAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Ảnh trang nhà hàng</div>
+            <div class="col-md-5">
+                <input value=@Model.RtrAvatar class="image-t" style="display:none" type="text" name="RtrAvatar" id="RtrAvatar" />
+                <input class="image-i form-control" accept="image/*" type="file" id="ImgInput" onchange="previewFile()" />
+                @{ if (Model.RtrAvatar != null)
+                    {
+                        <img style="display:block" id="previewImg" class="previewImg" height="180" src=@Model.RtrAvatar /> }
+                    else
+                    {
+                        <img style="display:block" id="previewImg" class="previewImg" height="180" src="@Url.Content("~/Content/Images/placeholder.jpg")" />
+                    }
+                }
+
+            </div>
+
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Mô tả nhà hàng</div>
+            <div class="col-md-8">
+                <input name="RtrDesc" id="RtrDesc" class="visually-hidden" />
+                <div id="editor">
+                    @Html.Raw(@Model.RtrDesc)
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Thời gian mở cửa</div>
+            <div class="col-md-5">
+                <input value=@Model.OpenTime type="time" name="OpenTime" id="OpenTime" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Thời gian đóng cửa</div>
+            <div class="col-md-5">
+                <input value=@Model.CloseTime type="time" name="CloseTime" id="CloseTime" class="form-control" />
+                <div id="errorTime" class="text-danger"></div>
+            </div>
+        </div>
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Giá thấp nhất</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <i>(Có thể để trống)</i>
+            </div>
+        </div>
+        <div class="mx-1 my-4 row">
+            <div class="col-md-2">Giá cao nhất</div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <i>(Có thể để trống)</i>
+            </div>
+        </div>
+
+
+        <div class="mx-1 my-4 row">
+
+            <div class="col-md-offset-2 col-md-5">
+                <input id="submit" type="submit" value="Lưu" class="btn btn-danger" />
+            </div>
+            <div class="my-4">
+                @Html.ActionLink("Trở về", "Index", "Home")
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

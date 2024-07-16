@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Simple.Models.Order>
+
+@{
+    ViewBag.Title = "Lịch sử đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lịch sử đơn hàng</h2>
+<div>
+    <span>Bạn có @ViewBag.Count đơn đang chờ </span> &nbsp;
+    @if(ViewBag.Count > 0)
+            {
+<span>@Html.ActionLink("Xem ngay", "Waiting")</span>
+            }
+    
+</div>
+
+<div class="d-none d-lg-block">
+    <table class="mt-3 table">
+        <tr class="table-danger align-middle">
+
+            <th>
+                Nhà hàng
+            </th>
+            <th>
+                Thời điểm đặt
+            </th>
+
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Đánh giá
+            </th>
+
+
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurant.RtrRealName)
+                </td>
+                <td>
+                    @item.DateTime.ToString("dd/MM/yyyy H:mm")
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.Partial("~/Views/Shared/Status.cshtml", item)
+                </td>
+                <td>
+                    @{ if (item.Happen == true)
+                        {
+                            if (item.Rate == 0)
+                            {
+                                @Html.ActionLink("Đánh giá", "Rate", new { id = item.OrderID }, new { @class = "link" })
+
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Rate) <span class="text-warning star">★</span>
+                            }
+                        }
+                    }
+
+                </td>
+
+
+
+
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="d-block d-lg-none">
+    @foreach (var item in Model)
+    {
+    <div class="card my-3">
+        <div class="card-header">
+            <h4>@item.Restaurant.RtrRealName</h4>
+
+        </div>
+        <div class="card-body px-4">
+            <div><b>Thời điểm đặt:</b> @item.DateTime.ToString("dd/MM/yyyy H:mm")</div>
+            <div><b>Số lượng:</b>  @item.Quantity</div>
+            <div>
+                <b>Trạng thái:</b>
+
+                @Html.Partial("~/Views/Shared/Status.cshtml", item)
+
+            </div>
+        </div>
+        @{ if (item.Happen == true)
+            {
+                <div class="card-footer">
+                    @{ if (item.Rate == 0)
+                        {
+                                        <div class="w-100 text-end">
+                                            @Html.ActionLink("Đánh giá", "Rate", new { id = item.OrderID }, new { @class = "btn btn-danger" })
+                                        </div>
+                            
+
+                        }
+                        else
+                        {
+                    <div class="d-flex align-items-center gap-2">
+                        <b>Đánh giá: </b>
+                        <div>
+                            @for (int i = 0; i < item.Rate; i++)
+                            {
+                                <span style="line-height:20px;" class="text-warning fs-4">★</span>
+                            }
+                        </div>
+                        
+                    </div>
+                            
+                        }
+                    }
+                </div>
+
+            }
+        }
+
+    </div>
+    }
+</div>
+

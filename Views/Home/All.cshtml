@@ -1,0 +1,20 @@
+﻿@model List<Simple.ViewModel.HomeViewModel>
+@{
+    ViewBag.Title = "Danh sách nhà hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="section px-1 px-sm-2 px-md-4 px-xl-5">
+        <h3>Danh sách tất cả nhà hàng</h3>
+        <div class="mt-2 row row-gap-3 row-gap-xl-4">
+
+            @foreach (var item in Model)
+            {
+                @Html.Partial("CardItem", item)
+
+            }
+        </div><br />
+    </div>
+
+

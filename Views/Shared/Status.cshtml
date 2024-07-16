@@ -1,0 +1,23 @@
+﻿@model Simple.Models.Order
+@{ 
+    if (Model.Happen == true)
+            {
+                <span>Hoàn thành</span>
+            }
+    else if(Model.UserAction == "Khách hàng không đến" || Model.UserAction == "Hủy bởi khách hàng")
+            {
+                <span>@Model.UserAction</span>
+            }
+    else if(Model.RtrAction == "Từ chối nhận đơn")
+            {
+                <span>Nhà hàng từ chối</span>
+            }
+    else if(Model.RtrAction == "Đồng ý nhận đơn")
+            {
+                <span>Nhà hàng đã nhận đơn</span>
+            }
+    else
+            {
+                <span>Đang chờ nhà hàng tiếp nhận</span>
+            }
+}

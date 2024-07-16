@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="packages\LibSassBuilder.3.0.0\build\LibSassBuilder.props" Condition="Exists('packages\LibSassBuilder.3.0.0\build\LibSassBuilder.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{710CD3B3-56E0-4CAD-BFBA-9EF9AC422313}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Simple</RootNamespace>
+    <AssemblyName>Simple</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.4\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RestaurantAccController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RestaurantsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Restaurants\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Restaurants\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Restaurants\Controllers\ImagesController.cs" />
+    <Compile Include="Areas\Restaurants\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Restaurants\Controllers\PageController.cs" />
+    <Compile Include="Areas\Restaurants\RestaurantsAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202403281132499_init.cs" />
+    <Compile Include="IdentityMigration\202403281132499_init.Designer.cs">
+      <DependentUpon>202403281132499_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202403301703210_addRequired.cs" />
+    <Compile Include="IdentityMigration\202403301703210_addRequired.Designer.cs">
+      <DependentUpon>202403301703210_addRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202403311320113_fix.cs" />
+    <Compile Include="IdentityMigration\202403311320113_fix.Designer.cs">
+      <DependentUpon>202403311320113_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404011148511_addRtr2.cs" />
+    <Compile Include="IdentityMigration\202404011148511_addRtr2.Designer.cs">
+      <DependentUpon>202404011148511_addRtr2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404011305108_addRtr3.cs" />
+    <Compile Include="IdentityMigration\202404011305108_addRtr3.Designer.cs">
+      <DependentUpon>202404011305108_addRtr3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404011945284_fix2.cs" />
+    <Compile Include="IdentityMigration\202404011945284_fix2.Designer.cs">
+      <DependentUpon>202404011945284_fix2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404041615218_addimage.cs" />
+    <Compile Include="IdentityMigration\202404041615218_addimage.Designer.cs">
+      <DependentUpon>202404041615218_addimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404041848333_addprice.cs" />
+    <Compile Include="IdentityMigration\202404041848333_addprice.Designer.cs">
+      <DependentUpon>202404041848333_addprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404071944105_addstatus.cs" />
+    <Compile Include="IdentityMigration\202404071944105_addstatus.Designer.cs">
+      <DependentUpon>202404071944105_addstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\202404132205381_edit.cs" />
+    <Compile Include="IdentityMigration\202404132205381_edit.Designer.cs">
+      <DependentUpon>202404132205381_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigration\Configuration.cs" />
+    <Compile Include="Identity\AppDbContext.cs" />
+    <Compile Include="Identity\AppUser.cs" />
+    <Compile Include="Identity\AppUserManager.cs" />
+    <Compile Include="Identity\AppUserStore.cs" />
+    <Compile Include="Migrations\202403251916548_init.cs" />
+    <Compile Include="Migrations\202403251916548_init.designer.cs">
+      <DependentUpon>202403251916548_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403260525576_UpdateTimeType.cs" />
+    <Compile Include="Migrations\202403260525576_UpdateTimeType.Designer.cs">
+      <DependentUpon>202403260525576_UpdateTimeType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403261903359_UpdateRtr.cs" />
+    <Compile Include="Migrations\202403261903359_UpdateRtr.Designer.cs">
+      <DependentUpon>202403261903359_UpdateRtr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403270538549_Order.cs" />
+    <Compile Include="Migrations\202403270538549_Order.Designer.cs">
+      <DependentUpon>202403270538549_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403301803400_addr.cs" />
+    <Compile Include="Migrations\202403301803400_addr.Designer.cs">
+      <DependentUpon>202403301803400_addr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403311308092_fix.cs" />
+    <Compile Include="Migrations\202403311308092_fix.Designer.cs">
+      <DependentUpon>202403311308092_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404021858167_addUser.cs" />
+    <Compile Include="Migrations\202404021858167_addUser.Designer.cs">
+      <DependentUpon>202404021858167_addUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404021941290_addUser2.cs" />
+    <Compile Include="Migrations\202404021941290_addUser2.Designer.cs">
+      <DependentUpon>202404021941290_addUser2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404021944369_addUser3.cs" />
+    <Compile Include="Migrations\202404021944369_addUser3.Designer.cs">
+      <DependentUpon>202404021944369_addUser3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404022002241_addUser4.cs" />
+    <Compile Include="Migrations\202404022002241_addUser4.Designer.cs">
+      <DependentUpon>202404022002241_addUser4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404031758027_ud.cs" />
+    <Compile Include="Migrations\202404031758027_ud.Designer.cs">
+      <DependentUpon>202404031758027_ud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041138217_addGallery.cs" />
+    <Compile Include="Migrations\202404041138217_addGallery.Designer.cs">
+      <DependentUpon>202404041138217_addGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041152343_addGallery1.cs" />
+    <Compile Include="Migrations\202404041152343_addGallery1.Designer.cs">
+      <DependentUpon>202404041152343_addGallery1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041553130_addimage.cs" />
+    <Compile Include="Migrations\202404041553130_addimage.Designer.cs">
+      <DependentUpon>202404041553130_addimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041827567_addprice.cs" />
+    <Compile Include="Migrations\202404041827567_addprice.Designer.cs">
+      <DependentUpon>202404041827567_addprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404071942473_addrate.cs" />
+    <Compile Include="Migrations\202404071942473_addrate.Designer.cs">
+      <DependentUpon>202404071942473_addrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404101938375_adddatetime.cs" />
+    <Compile Include="Migrations\202404101938375_adddatetime.Designer.cs">
+      <DependentUpon>202404101938375_adddatetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404132204524_edit.cs" />
+    <Compile Include="Migrations\202404132204524_edit.Designer.cs">
+      <DependentUpon>202404132204524_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationDb.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestaurantModels\Register.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="UserModels\Edit.cs" />
+    <Compile Include="UserModels\Login.cs" />
+    <Compile Include="UserModels\Register.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Simple.ApplicationDb.mdf" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.min.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.min.js" />
+    <Content Include="bootstrap-5.3.3-dist\splide.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\splide.min.js" />
+    <Content Include="Content\Images\437732294_856382496249826_4084571687998732329_n.png" />
+    <Content Include="Content\Images\du-lich-nam-dinh-1 %281%29.jpg" />
+    <Content Include="Content\Images\Hanoi2-1652338755-3632-1652338809.jpg" />
+    <Content Include="Content\Images\Hải Phòng.jpg" />
+    <Content Include="Content\Images\placeholder.jpg" />
+    <Content Include="Content\Images\vecteezy_minimal-futuristic-abstract-gradient-red-stripes-background-design_.jpg" />
+    <Content Include="Content\Images\—Pngtree—simple cute red gradient background_733404.jpg" />
+    <Content Include="Content\manage.css">
+      <DependentUpon>manage.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\manage.min.css">
+      <DependentUpon>manage.css</DependentUpon>
+    </Content>
+    <Content Include="Content\style.css">
+      <DependentUpon>style.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.scss" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RestaurantAcc\Register.cshtml" />
+    <Content Include="Areas\Restaurants\Views\web.config" />
+    <Content Include="Areas\Restaurants\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Page\Edit.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurants\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurants\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurants\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurants\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurants\Index.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RestaurantAcc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RestaurantAcc\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Orders\History.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Orders\Waiting.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Orders\Received.cshtml" />
+    <Content Include="Areas\Restaurants\Views\Images\Index.cshtml" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.min.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Restaurants\Views\Orders\Review.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\manage.scss" />
+    <Content Include="jquery-ui-1.13.3.custom\package.json" />
+    <None Include="Properties\PublishProfiles\enjoyit - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\enjoyit - Web Deploy1.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="jquery-ui-1.13.3.custom\AUTHORS.txt" />
+    <Content Include="jquery-ui-1.13.3.custom\datepicker-vi.js" />
+    <Content Include="jquery-ui-1.13.3.custom\external\jquery\jquery.js" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_444444_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_555555_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_777620_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_777777_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="jquery-ui-1.13.3.custom\index.html" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.css" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.js" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.min.css" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.min.js" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.structure.css" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.structure.min.css" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.theme.css" />
+    <Content Include="jquery-ui-1.13.3.custom\jquery-ui.theme.min.css" />
+    <Content Include="jquery-ui-1.13.3.custom\LICENSE.txt" />
+    <Content Include="Scripts\CKeditor.js" />
+    <Content Include="Scripts\Clock.js" />
+    <Content Include="Scripts\Filter.js" />
+    <Content Include="Scripts\find.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\CardItem.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Booking\History.cshtml" />
+    <Content Include="Views\Booking\Waiting.cshtml" />
+    <Content Include="Views\Home\Restaurant.cshtml" />
+    <Content Include="Views\Home\Find.cshtml" />
+    <Content Include="Views\Booking\Rate.cshtml" />
+    <Content Include="Views\Shared\Status.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Notification.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
+    <Content Include="Views\Home\City.cshtml" />
+    <Content Include="Views\Home\All.cshtml" />
+    <Content Include="Views\Home\SuggestCard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Restaurants\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IdentityMigration\202403281132499_init.resx">
+      <DependentUpon>202403281132499_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202403301703210_addRequired.resx">
+      <DependentUpon>202403301703210_addRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202403311320113_fix.resx">
+      <DependentUpon>202403311320113_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404011148511_addRtr2.resx">
+      <DependentUpon>202404011148511_addRtr2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404011305108_addRtr3.resx">
+      <DependentUpon>202404011305108_addRtr3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404011945284_fix2.resx">
+      <DependentUpon>202404011945284_fix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404041615218_addimage.resx">
+      <DependentUpon>202404041615218_addimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404041848333_addprice.resx">
+      <DependentUpon>202404041848333_addprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404071944105_addstatus.resx">
+      <DependentUpon>202404071944105_addstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigration\202404132205381_edit.resx">
+      <DependentUpon>202404132205381_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403251916548_init.resx">
+      <DependentUpon>202403251916548_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403260525576_UpdateTimeType.resx">
+      <DependentUpon>202403260525576_UpdateTimeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403261903359_UpdateRtr.resx">
+      <DependentUpon>202403261903359_UpdateRtr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403270538549_Order.resx">
+      <DependentUpon>202403270538549_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403301803400_addr.resx">
+      <DependentUpon>202403301803400_addr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403311308092_fix.resx">
+      <DependentUpon>202403311308092_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404021858167_addUser.resx">
+      <DependentUpon>202404021858167_addUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404021941290_addUser2.resx">
+      <DependentUpon>202404021941290_addUser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404021944369_addUser3.resx">
+      <DependentUpon>202404021944369_addUser3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404022002241_addUser4.resx">
+      <DependentUpon>202404022002241_addUser4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404031758027_ud.resx">
+      <DependentUpon>202404031758027_ud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041138217_addGallery.resx">
+      <DependentUpon>202404041138217_addGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041152343_addGallery1.resx">
+      <DependentUpon>202404041152343_addGallery1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041553130_addimage.resx">
+      <DependentUpon>202404041553130_addimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041827567_addprice.resx">
+      <DependentUpon>202404041827567_addprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404071942473_addrate.resx">
+      <DependentUpon>202404071942473_addrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101938375_adddatetime.resx">
+      <DependentUpon>202404101938375_adddatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404132204524_edit.resx">
+      <DependentUpon>202404132204524_edit.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53522</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44300/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\LibSassBuilder.3.0.0\build\LibSassBuilder.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\LibSassBuilder.3.0.0\build\LibSassBuilder.props'))" />
+    <Error Condition="!Exists('packages\LibSassBuilder.3.0.0\build\LibSassBuilder.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\LibSassBuilder.3.0.0\build\LibSassBuilder.targets'))" />
+    <Error Condition="!Exists('packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets'))" />
+  </Target>
+  <Import Project="packages\LibSassBuilder.3.0.0\build\LibSassBuilder.targets" Condition="Exists('packages\LibSassBuilder.3.0.0\build\LibSassBuilder.targets')" />
+  <Import Project="packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets" Condition="Exists('packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

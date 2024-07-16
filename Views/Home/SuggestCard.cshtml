@@ -1,0 +1,65 @@
+﻿@model Simple.ViewModel.HomeViewModel
+
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 rtr px-2 d-flex flex-column justify-content-between">
+    <div class="d-flex flex-column">
+        <a class="avatar position-relative" href="/Home/Restaurant/@Model.RtrID">
+            <img class="rounded-3 "
+                 @{if (Model.RtrAvatar == null) { <text> src="@Url.Content("~/Content/Images/placeholder.jpg")" </text>  } else { <text> src=@Model.RtrAvatar</text>
+                }
+                        } alt="Avatar" />
+            <div class="foreground rounded-3 z-2"></div>
+            <div class="rounded-3 position-absolute top-0 start-0  z-3 text-white px-4 py-1" style="background:red;font-size:14px">Được đề xuất</div>
+        </a>
+        <div class="d-flex flex-column">
+            <div class="name">
+                <a style="line-height:130%;" class="text-black fs-3 fw-bold text-decoration-none ellipsis" href="/Home/Restaurant/@Model.RtrID">
+                    @Model.RtrRealName
+                </a>
+                <div class="text-nowrap fw-bold fs-5">@Model.Stars <span class="text-warning fs-4">★</span> </div>
+
+            </div>
+            <div class="city text-secondary">
+                @Model.RtrCity
+            </div>
+            <div class="address text-secondary">
+                @Model.RtrAddress
+            </div>
+            <div class="text-danger fw-bold" style="margin-top:2px;">
+                @{ if (Model.MinPrice == null && Model.MaxPrice == null)
+                    {
+                        <text></text>
+                    }
+                    else if (Model.MinPrice == null)
+                    {
+                        <text>Không quá @Model.MaxPrice đ</text>
+
+                    }
+                    else if (Model.MaxPrice == null)
+                    {
+                        <text>Chỉ từ @Model.MinPrice đ</text>
+                    }
+                    else
+                    {
+                        <text>@Model.MinPrice đ - @Model.MaxPrice đ </text>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @{ if (Model.InActive == false)
+            {
+                <a href="/Booking/Create/@Model.RtrID" class="btn btn-danger px-4">Đặt chỗ</a>
+
+                }
+                else {
+                <button disabled class="btn btn-danger">Tạm ngừng nhận đơn</button>
+            
+            } }
+
+
+    </div>
+</div>

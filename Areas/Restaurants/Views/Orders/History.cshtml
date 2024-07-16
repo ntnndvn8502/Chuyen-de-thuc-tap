@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Simple.Models.Order>
+
+@{
+    ViewBag.Title = "Lịch sử đơn hàng";
+    Layout = "~/Areas/Restaurants/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.inactive == true)
+{
+    <div class="box_ls">
+        <span>Nhà hàng đang tạm ngừng nhận đơn</span>
+        @Html.ActionLink("Nhận đơn trở lại", "Inactive", "Home", new { id = false }, new { @class = "btn btn-danger ms-3" })
+    </div>
+}
+
+<h2>Lịch sử đơn hàng</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+
+            <input type="text" class="form-control" id="textSearch" placeholder="Tìm kiếm" />
+
+        </div>
+        <div style="gap:1rem" class="col-lg-5 d-flex justify-content-end align-items-center">
+            <div>Trạng thái</div>
+            <select id="happenSearch" class="form-select" aria-label="Default select example">
+                <option @{ if (ViewBag.id == null) { <text> selected</text> } } value="">Tất cả</option>
+                <option @{ if (ViewBag.id == 1) { <text> selected</text> } } value="1">Đơn hàng thành công</option>
+                <option @{ if (ViewBag.id == 2) { <text> selected</text> } } value="2">Đơn hàng thất bại</option>>
+            </select>
+        </div>
+    </div><br />
+    <div class="row">
+        <div style="gap:1rem" class=" d-flex align-items-center">
+            <div>Tìm kiếm theo ngày đến</div>
+            <input type="date" class="form-control" id="startDate" />
+            <div>Đến</div>
+            <input type="date" class="form-control" id="endDate" />
+            <button id="date-btn" class="btn btn-outline-danger">
+                <svg style="margin-top:-5px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                SĐT
+            </th>
+            <th>
+                Thời gian đặt
+            </th>
+
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Trạng thái
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerRealName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerPhone)
+                </td>
+                <td>
+                    @item.DateTime.ToString("dd/MM/yyyy H:mm")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.Partial("~/Views/Shared/Status.cshtml", item)
+                </td>
+                <td class="ArrivalDate" style="display:none">
+                    @item.ArrivalDate.ToShortDateString()
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Simple.Models.Order>
+
+@{
+    ViewBag.Title = "Đơn hàng đang chờ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đơn hàng đang chờ </h2>
+<div class="d-none d-lg-block">
+    <table  class="table mt-4">
+        <thead>
+            <tr class="table-danger align-middle">
+
+                <th>
+                    Nhà hàng
+                </th>
+                <th>
+                    Thời điểm đặt
+                </th>
+
+
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Ghi chú
+                </th>
+                <th>Trạng thái</th>
+
+                <th class="action"></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr class="align-middle">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurant.RtrRealName)
+                </td>
+                <td>
+                    @item.DateTime.ToString("dd/MM/yyyy H:mm")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderNote)
+                </td>
+                <td>
+                    @Html.Partial("~/Views/Shared/Status.cshtml", item)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.OrderID }, new { @class = "btn btn-danger" }) &nbsp;
+                    
+                    <a href="" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#@(item.OrderID)">Hủy đơn</a>
+                    <div style="margin-top:200px" class="modal fade" id=@item.OrderID tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn chắc chắn muốn hủy đơn hàng này chứ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay về</button>
+                                    @Html.ActionLink("Hủy đơn", "Cancel", new { id = item.OrderID }, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="d-block d-lg-none">
+    @foreach(var item in Model)
+            {
+                <div class="card my-3">
+                    <div class="card-header">
+                        <h4>@item.Restaurant.RtrRealName</h4>
+                        
+                    </div>
+                    <div class="card-body px-4">
+                        <div><b>Thời điểm đặt:</b> @item.DateTime.ToString("dd/MM/yyyy H:mm")</div>
+                        <div><b>Số lượng:</b>  @item.Quantity</div>
+                        <div><b>Ghi chú:</b> @item.OrderNote </div>
+                        <div>
+                            <b>Trạng thái:</b>
+                            
+                            @Html.Partial("~/Views/Shared/Status.cshtml", item)
+
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.OrderID }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Hủy đơn", "Cancel", new { id = item.OrderID }, new { @class = "btn btn-outline-secondary" })
+                    </div>
+                </div>
+            }
+</div>
+
+@if(Model.Count() == 0)
+            {
+                <div class="row text-center">
+                    <i style="color:gray">Bạn không có đơn hàng đang chờ nào</i>
+                </div>
+            }

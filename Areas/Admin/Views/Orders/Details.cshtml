@@ -1,0 +1,109 @@
+﻿@model Simple.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Đơn hàng @Model.OrderID</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tài khoản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerUserName)
+        </dd>
+        <dt>
+            Khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerRealName)
+        </dd>
+
+        <dt>
+            Nhà hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Restaurant.RtrRealName)
+        </dd>
+
+        <dt>
+            Ngày đến
+        </dt>
+
+        <dd>
+            @Model.ArrivalDate.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            Giờ đến
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+
+        <dt>
+            Thời điểm đặt đơn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookTime)
+        </dd>
+
+        <dt>
+            Số lượng người
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            Ghi chú
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderNote)
+        </dd>
+
+        <dt>
+            Trạng thái
+        </dt>
+
+        <dd>
+            @Html.Partial("~/Views/Shared/Status.cshtml", Model)
+        </dd>
+
+        <dt>
+            Đánh giá
+        </dt>
+
+        <dd>
+            <span>@Model.Rate</span><span class="text-warning fs-5">★</span>
+        </dd>
+        <dt>
+            Bình luận
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+
+
+
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Trở về", "Index")
+</p>

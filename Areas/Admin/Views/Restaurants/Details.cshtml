@@ -1,0 +1,127 @@
+﻿@model Simple.Models.Restaurant
+
+@{
+    ViewBag.Title = "Chi tiết nhà hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết nhà hàng</h2>
+
+<div>
+    <h4>Nhà hàng #@Model.RtrID</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên nhà hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrRealName)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrEmail)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrPhone)
+        </dd>
+
+        <dt>
+            Thành phố
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrCity)
+        </dd>
+
+        <dt>
+            Địa chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrAddress)
+        </dd>
+        <dt>
+            Trạng thái
+        </dt>
+        <dd>
+            @{ if (Model.Active == false)
+                {
+                <span>Hoạt động bình thường</span>
+                    }
+                    else { 
+                <span>Đang tạm ngừng nhận đơn</span>
+                } }
+        </dd>
+
+
+
+
+
+        <dt>
+            Thời gian mở cửa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenTime)
+        </dd>
+
+        <dt>
+            Thời gian đóng cửa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CloseTime)
+        </dd>
+        <dt>
+            Giá thấp nhất
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinPrice)
+        </dd>
+        <dt>
+            Giá cao nhất
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxPrice)
+        </dd>
+
+        <dt>
+            Tài khoản quản lí
+        </dt>
+        <dd>
+            @foreach (var item in ViewBag.Account)
+            {
+                <span>@item.UserName &nbsp; &nbsp; &nbsp; </span>
+            }
+        </dd>
+        <dt>Mật khẩu</dt>
+        <dd>
+            @foreach (var item in ViewBag.Account)
+            {
+                <span style="display:none" id="pass">@item.PhoneNumber  </span>
+                <span  id="blur">*****</span>
+                <button id="pass-btn" class="ms-2 btn btn-sm btn-secondary">Hiện</button>
+
+            }
+        </dd>
+
+
+    </dl>
+</div>
+
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>

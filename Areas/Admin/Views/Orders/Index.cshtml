@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Simple.Models.Order>
+
+@{
+    ViewBag.Title = "Quản lí đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lí đơn hàng</h2><br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+            
+            <input type="text" class="form-control" id="textSearch" placeholder="Tìm kiếm theo tên nhà hàng hay tài khoản"/>
+            
+        </div>
+        <div style="gap:1rem" class="col-lg-5 d-flex justify-content-end align-items-center">
+            <div>Trạng thái</div>
+            <select id="statusSearch" class="form-select" aria-label="Default select example">
+                <option @{ if (ViewBag.id == null) { <text>selected</text> } } value="">Tất cả</option>
+                <option @{ if (ViewBag.id == 1) { <text>selected</text> } }  value="1">Hoàn thành</option>
+                <option @{ if (ViewBag.id == 2) { <text>selected</text> } }  value="2">Khách hàng không đến</option>
+                <option @{ if (ViewBag.id == 3) { <text>selected</text> } }  value="3">Hủy bởi khách hàng</option>
+                <option @{ if (ViewBag.id == 4) { <text>selected</text> } }  value="4">Nhà hàng từ chối</option>
+                <option @{ if (ViewBag.id == 5) { <text>selected</text> } }  value="5">Nhà hàng đã nhận đơn</option>
+                <option @{ if (ViewBag.id == 6) { <text>selected</text> } }  value="6">Đang chờ nhà hàng tiếp nhận</option>
+            </select>
+        </div>
+    </div><br />
+    <div  class="row">
+        <div style="gap:1rem" class=" d-flex align-items-center">
+            <div>Tìm kiếm theo ngày đến</div>
+            <input type="date" class="form-control" id="startDate" />
+            <div>Đến</div>
+            <input type="date" class="form-control" id="endDate" />
+            <button id="date-btn" class="btn btn-outline-danger">
+                <svg style="margin-top:-5px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </button>
+        </div>
+        
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Nhà hàng
+            </th>
+            <th>
+                Thời gian đến
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurant.RtrRealName)
+                </td>
+                <td>
+                    @item.DateTime.ToString("dd/MM/yyyy H:mm")
+                </td>
+                <td class="ArrivalDate" style="display:none">
+                    @item.ArrivalDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.Partial("~/Views/Shared/Status.cshtml", item)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |*@
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.OrderID }) 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.OrderID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

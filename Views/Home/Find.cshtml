@@ -1,0 +1,18 @@
+﻿@model List<Simple.ViewModel.HomeViewModel>
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kết quả tìm kiếm</h2>
+<div>@ViewBag.Find</div>
+<div class="section">
+    <div class="row row-gap-3 row-gap-xxl-4">
+
+        @foreach (var item in Model)
+        {
+            @Html.Partial("CardItem",item)
+
+        }
+    </div>
+</div>

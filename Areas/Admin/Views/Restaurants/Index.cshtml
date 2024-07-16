@@ -1,0 +1,79 @@
+﻿@model List<Simple.ViewModel.HomeViewModel>
+
+@{
+    ViewBag.Title = "Quản lí nhà hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lí nhà hàng </h2><br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+
+            <input type="text" class="form-control" id="textSearch" placeholder="Tìm kiếm" />
+
+        </div>
+    </div><br />
+          <p>
+              @Html.ActionLink("Tạo nhà hàng mới", "Create", new { }, new { @class = "btn btn-danger" })
+          </p>
+</div>
+        
+        <table class="table">
+            <tr class="align-middle">
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên nhà hàng
+                </th>
+                <th>
+                    Tài khoản
+                </th>
+                <th>
+                    Tỉnh/ Thành phố
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Đánh giá
+                </th>
+                
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RtrID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RtrRealName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RtrCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RtrAddress)
+                    </td>
+                    <td>
+                        @item.Stars <span class="text-warning fs-5">★</span>
+                    </td>
+
+                    <td>
+                        
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.RtrID }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.RtrID }) 
+                        
+                    </td>
+                </tr>
+            }
+
+        </table>
+

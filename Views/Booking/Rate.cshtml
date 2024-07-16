@@ -1,0 +1,83 @@
+﻿@model Simple.Models.Order
+
+
+@{
+    ViewBag.Title = "Đánh giá";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đánh giá</h2>
+<h4>Nhà hàng @Model.Restaurant.RtrRealName</h4>
+<h5>Ngày dùng bữa: @Model.ArrivalDate.ToString("dd/M/yyyy")</h5>
+<div class="row">
+    <div class="col-md-2">
+        
+    </div>
+    <div class="col-md-10">
+        @using (Html.BeginForm("Rate", "Booking", FormMethod.Post, new { @id = "rate-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+
+                <div class="row my-2">
+                    <div class="col-4 col-sm-3 col-md-2" style="margin-top:3px">Đánh giá</div>
+                    <div class="col-8">
+                        <div class="rating">
+                            <input checked type="radio" name="Rate"  value="0" class="visually-hidden" />
+                            <label>
+                                <input type="radio" name="Rate"  value="1" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Rate"  value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Rate"  value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Rate"  value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Rate"  value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                        </div>
+                        <div class="mt-1 upload-error text-danger"></div>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-md-2">Bình luận</div>
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+                        <textarea id="Comment" name="Comment" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9 my-2">
+                        <input type="submit" value="Đánh giá" class="btn btn-danger" /> &nbsp;&nbsp;&nbsp;
+                        @Html.ActionLink("Hủy", "History", "", new { @class = "btn btn-outline-secondary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

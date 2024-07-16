@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Simple.Models.Image>
+
+@{
+    ViewBag.Title = "Thư viện ảnh";
+    Layout = "~/Areas/Restaurants/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thư viện ảnh</h2>
+
+
+<div class="container-fluid p-3 border-2 border border-light-subtle">
+    <div class="row row-gap-3">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 position-relative " >
+                
+                    <img src=@item.ImageUrl class="library-image bg-dark bg-opacity-50" />
+                
+                
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ImageID }) |*@
+            <div class="position-absolute mt-2 me-3 top-0 end-0">
+                <a href="#"  class="openModal delete-image" data-bs-toggle="modal" data-bs-target="#exampleModal">Chỉnh sửa<span class="visually-hidden">@item.ImageID</span></a>
+                @Html.ActionLink("Xóa", "Delete", new { id = item.ImageID }, new { @class = " delete-image" })
+
+            </div>
+
+            </div>
+
+        }
+        <div class="col-lg-4  ">
+            <div style="height:350px" class="align-content-center bg-dark bg-opacity-10 px-2 ">
+                <div id="handleNull">
+                    @using (Html.BeginForm("Index","Images", new { }, FormMethod.Post, new {@class = "d-flex flex-column  justify-content-center" } ))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        
+
+                            
+                                <input style="display:none" type="text" name="ImageUrl" id="ImageUrl" />
+                                <input type="file" id="ImgInput" accept="image/*" class="form-control" onchange="uploadFile()" />
+                                <div class="upload-error text-danger mt-2"></div>
+                                <button class="btn btn-danger mt-2 mx-auto" id="imageBtn" type="submit">Thêm ảnh</button>
+
+                            
+                        
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" style="margin-top:150px;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        @using (Html.BeginForm("Edit", "Images", new { }, FormMethod.Post, new { @id = "ImageEdit", @class = "modal-content" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa ảnh</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="ImageID" name="ImageID" />
+                <input style="display:none" type="text" name="ImageUrl" id="ImageUrl2" />
+                <input type="file" id="ImgInput2" accept="image/*" class="form-control" onchange="uploadFile2()" />
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Lưu</button>
+            </div>
+        }
+
+
+    </div>
+</div>
+<br />
+
+@Html.ActionLink("Trở về", "Edit", "Page", new { }, new { @class = "my-3" })
+
+
+

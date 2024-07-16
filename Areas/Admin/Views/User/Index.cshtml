@@ -1,0 +1,56 @@
+﻿@model List<Simple.Identity.AppUser>
+
+@{
+    ViewBag.Title = "Quản lí tài khoản khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lí tài khoản khách hàng</h2><br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+            <input type="text" class="form-control" id="textSearch" placeholder="Tìm kiếm" />
+        </div>
+    </div><br />
+</div>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <th></th>
+    </tr>
+    @foreach(var item in Model)
+            {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.RealName</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>
+
+                <a href="" data-bs-toggle="modal" data-bs-target="#@(item.UserName)">Xóa</a>
+                <div style="margin-top:200px" class="modal fade" id=@item.UserName tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn chắc chắn muốn xóa tài khoản này chứ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay về</button>
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+            }
+
+</table>
+

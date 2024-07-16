@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Simple.Models.Order>
+
+@{
+    ViewBag.Title = "Đơn hàng đã nhận";
+    Layout = "~/Areas/Restaurants/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.inactive == true)
+{
+    <div class="box_ls">
+        <span>Nhà hàng đang tạm ngừng nhận đơn</span>
+        @Html.ActionLink("Nhận đơn trở lại", "Inactive", "Home", new { id = false }, new { @class = "btn btn-danger ms-3" })
+    </div>
+}
+<h2>Đơn hàng đã tiếp nhận</h2>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+
+            <input type="text" class="form-control" id="textSearch" placeholder="Tìm kiếm" />
+
+        </div>
+    </div><br />
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>SĐT</th>
+        <th>
+            Ngày đến
+        </th>
+        <th>
+            Giờ đến
+        </th>
+
+        <th>
+            Số lượng người
+        </th>
+        <th>
+            Ghi chú
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerRealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerPhone)
+            </td>
+            <td>
+                @item.ArrivalDate.ToString("d/M/yyyy")
+            </td>
+            <td>
+                @item.ArrivalTime.ToString("hh': 'mm''")
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNote)
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("Đã phục vụ", "Served", new { id = item.OrderID }, new { @class = "btn btn-danger" }) &nbsp;
+                @Html.ActionLink("Hủy đơn", "Refuse", new { id = item.OrderID }, new { @class = "btn btn-outline-success" }) <br />
+                @Html.ActionLink("Khách không đến", "Absent", new { id = item.OrderID }, new { @class = " btn btn-secondary mt-2" })
+            </td>
+        </tr>
+    }
+
+</table>

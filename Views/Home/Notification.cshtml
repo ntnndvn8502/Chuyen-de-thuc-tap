@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h3>@TempData["message"]</h3>
+    @Html.ActionLink("Trở về trang chủ", "Index", new {},new {@class = "btn btn-danger"})
+</div>
+
+
+

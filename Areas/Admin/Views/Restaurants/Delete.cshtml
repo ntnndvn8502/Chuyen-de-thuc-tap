@@ -1,0 +1,70 @@
+﻿@model Simple.Models.Restaurant
+
+@{
+    ViewBag.Title = "Xóa nhà hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa nhà hàng</h2>
+
+<h3>Bạn chắc chắn muốn xóa nhà hàng này chứ</h3>
+<div>
+    <h4>Nhà hàng #@Model.RtrID</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên nhà hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrRealName)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrEmail)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrPhone)
+        </dd>
+
+        <dt>
+            Thành phố
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrCity)
+        </dd>
+
+        <dt>
+            Địa chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RtrAddress)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger mb-2" /><br />
+            <div>
+                @Html.ActionLink("Trở về", "Index")
+            </div>
+            
+        </div>
+    }
+</div>
